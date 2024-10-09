@@ -1,0 +1,96 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { CldUploadWidget } from "astro-cloudinary";
+---
+
+<Layout title="La Purga">
+  <main>
+    <h1>La Purga</h1>
+    <p>To do.</p>
+    <CldUploadWidget
+      id="upload-widget"
+      uploadPreset="upload-images"
+      options={{
+        sources: ["local", "camera"],
+        multiple: false,
+        maxFiles: 1,
+        folder: "halloween",
+        //theme: "minimal",
+        language: "es",
+        styles: {
+          frame: {
+            background: "#80808099",
+          },
+        },
+        text: {
+          es: {
+            or: "o",
+            back: "Volver",
+            advanced: "Avanzado",
+            close: "Cerrar",
+            no_results: "Sin resultados",
+            search_placeholder: "Buscar archivos",
+            about_uw: "Acerca de Upload Widget",
+            local: {
+              browse: "Buscar",
+              dd_title_single: "Arrastra una imagen aquí",
+              dd_title_multi: "Arrastra imágenes aquí",
+              drop_title_single: "Arrastra una imagen para subir",
+              drop_title_multiple: "Arrastra imágenes para subir",
+            },
+            menu: {
+              files: "Mis Archivos",
+            },
+          },
+        },
+      }}
+    >
+      <button class="cld-button">Upload</button>
+    </CldUploadWidget>
+    <div class="">
+      <img src="" alt="" id="img" />
+      <pre id="pre"></pre>
+    </div>
+  </main>
+</Layout>
+<script>
+  import { getCldImageUrl } from "astro-cloudinary/helpers";
+
+  const widget = document.querySelector("#upload-widget");
+  const img = document.querySelector("#img");
+  const pre = document.querySelector("#pre");
+
+  const harcodedURL =
+    "https://res.cloudinary.com/cazu/image/upload/e_gen_replace:from_face;to_dead%20zombie%20face%20with%20closed%20eyes;preserve-geometry_true/c_thumb,w_600,h_600,g_auto/f_auto/q_auto/v1/halloween/gquukcgkzyzhsuicggca?_a=BBGABlXg0";
+
+  img.src = harcodedURL;
+
+  if (widget) {
+    widget.addEventListener("clduploadwidget:success", (e) => {
+      //console.log("clduploadwidget:success", e?.detail?.info);
+      // e?.detail?.info?.public_id
+      // e?.detail?.info?.secure_url
+
+      const id = e?.detail?.info?.public_id || "";
+
+      const url = getCldImageUrl({
+        src: id,
+        crop: {
+          width: 600,
+          height: 600,
+          type: "thumb",
+          source: true,
+        },
+        /*  removeBackground: true,
+        background: "#3a046d", */
+        replace: [
+          "face",
+          "dead zombie face with closed eyes;preserve-geometry_true",
+        ],
+      });
+
+      img.src = url;
+      pre.innerHTML = url;
+    });
+  }
+</script>

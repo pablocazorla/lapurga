@@ -7,7 +7,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
@@ -20,4 +20,17 @@ const { title } = Astro.props;
     <slot />
   </body>
 </html>
-<style is:global></style>
+<style is:global>
+  body {
+    background-color: #1e003a;
+    background: radial-gradient(circle, #1e003a 0%, #000000 100%);
+    background-position: center;
+    color: #00d660;
+    text-shadow: 0px 1px 4px #00ff73bd;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    width: 100dvw;
+    height: 100dvh;
+    overflow: hidden;
+  }
+</style>

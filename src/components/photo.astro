@@ -1,0 +1,116 @@
+<div class="photo-container" id="photo-container">
+  <div class="photo-wrap">
+    <img src="" alt="" class="photo-original" />
+    <img src="" alt="" class="photo-dead" />
+    <div class="photo-wrap-dimmer-color"></div>
+    <div class="photo-wrap-dimmer"></div>
+  </div>
+</div>
+<div class="photo-container-dimmer" id="photo-container-dimmer"></div>
+
+<style>
+  .photo-container {
+    position: fixed;
+    z-index: 900;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  .photo-container-dimmer {
+    position: fixed;
+    z-index: 901;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .photo-container-dimmer.show {
+    background-color: #ffd;
+    animation: photoContainerDimmer 0.6s 1 ease-out forwards;
+  }
+  .photo-wrap {
+    width: 130dvw;
+    max-width: 130dvh;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    position: relative;
+    background-color: #000;
+    border-radius: 50%;
+    box-shadow:
+      0 0 20px 20px #1e003a,
+      inset 0 0 10px 10px #1e003a;
+
+    display: none;
+  }
+
+  .photo-wrap.show {
+    display: block;
+    animation: imageFade 30s 1 ease-out forwards;
+  }
+
+  .photo-wrap-dimmer-color {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border-radius: 50%;
+    background-color: #1e003a;
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+  }
+  .photo-wrap-dimmer {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px 20px #1e003a;
+  }
+
+  .photo-original,
+  .photo-dead {
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    display: block;
+    width: 98%;
+    border-radius: 50%;
+    height: auto;
+    filter: grayscale(50%);
+  }
+  .photo-dead.show {
+    animation: photoDead 20s infinite;
+  }
+
+  @keyframes photoContainerDimmer {
+    0% {
+      opacity: 0.95;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes photoDead {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes imageFade {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0.5);
+      opacity: 0.4;
+    }
+  }
+</style>

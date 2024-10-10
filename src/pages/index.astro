@@ -1,74 +1,90 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Textbox from "../components/textbox.astro";
+import DimmerFullScreen from "../components/dimme-fullscreen.astro";
+import Photo from "../components/photo.astro";
 import { CldUploadWidget } from "astro-cloudinary";
 ---
 
 <Layout title="La Purga">
   <main class="main">
-    <div class="textbox-container">
-      <div class="textbox" id="textbox">
-        <span class="textbox-inner"></span><span class="textbox-wait"
-          >&nbsp;&nbsp;&nbsp;</span
-        >
-      </div>
-      <button class="textbox textbox-btn" id="textbox-btn">
-        <span class="textbox-inner"></span><span class="textbox-wait"></span>
-      </button>
+    <div class="video-bg-noise">
+      <video src="/img/bg-video.mp4" muted autoplay loop></video>
     </div>
-    <div class="dimmer-full-screen" id="dimmer-full-screen"></div>
+    <Photo />
+    <Textbox />
+    <div class="dimmer-noise"></div>
+    <DimmerFullScreen />
   </main>
 </Layout>
-<style is:global>
+<style>
   .main {
+    overflow: hidden;
+  }
+  .video-bg-noise {
+    position: fixed;
+    z-index: 1998;
+    top: 0;
+    left: 0;
     width: 100dvw;
     height: 100dvh;
-    overflow: hidden;
-    display: grid;
-    place-content: center;
+    mix-blend-mode: screen;
+    opacity: 0.05;
+    pointer-events: none;
   }
-  .textbox-container {
-    text-align: center;
+  .video-bg-noise video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
-  .textbox {
-    text-align: center;
-    font-size: 30px;
-  }
-
-  .textbox-btn {
-    background-color: #000000d2;
-    border: none;
-    outline: none;
-    color: #00d660;
-    text-shadow: 0px 1px 4px #00ff737e;
-    font-family: "Courier New", Courier, monospace;
-    font-weight: bold;
-    margin-top: 15px;
-    padding: 10px 25px;
-    border-radius: 12px;
-    cursor: pointer;
-    display: none;
-  }
-
-  .dimmer-full-screen {
+  .dimmer-noise {
     position: fixed;
     z-index: 2000;
     top: 0;
     left: 0;
     width: 100dvw;
     height: 100dvh;
-    cursor: pointer;
+    pointer-events: none;
+    background-image: url("/img/noise.svg");
+    animation: noiseAnimation 0.2s step-end infinite;
+    mix-blend-mode: screen;
+    opacity: 0.1;
   }
 
-  .fade-out {
-    animation: fadeOut 1s ease-in-out;
-  }
-
-  @keyframes fadeOut {
+  @keyframes noiseAnimation {
     0% {
-      opacity: 1;
+      background-position: 0 0;
+    }
+    10% {
+      background-position: -730px 590px;
+    }
+    20% {
+      background-position: -200px -200px;
+    }
+    30% {
+      background-position: 150px 356px;
+    }
+    40% {
+      background-position: 310px -440px;
+    }
+    60% {
+      background-position: 10px 930px;
+    }
+    60% {
+      background-position: -630px 520px;
+    }
+    70% {
+      background-position: -240px -280px;
+    }
+    80% {
+      background-position: 178px 256px;
+    }
+    90% {
+      background-position: -710px -40px;
     }
     100% {
-      opacity: 0;
+      background-position: 0 0;
     }
   }
 </style>

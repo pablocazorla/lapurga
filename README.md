@@ -1,54 +1,71 @@
-# Astro Starter Kit: Basics
+# La Purga de Halloween
+
+La Purga de Halloween es una aplicación web creada como propuesta para participar en el "[Cloudinary CloudCreate: Spooky AI Hackathon](https://cloudinary.com/blog/cloudinary-cloudcreate-spooky-ai-hackathon)", organizado por [Cloudinary](https://cloudinary.com) junto a [Midudev](https://github.com/midudev).
+
+## Demo
+
+Puedes ver una demo de la aplicación subida a Vercel en [https://lapurga.vercel.app/](https://lapurga.vercel.app/).
+
+## Captura
+
+![just-the-basics](screenshot.png)
+
+## Tecnologías utilizadas
+
+- Astro [https://astro.build/](https://astro.build/)
+- Cloudinary [https://cloudinary.com/](https://cloudinary.com/)
+- Vanilla JavaScript
+- HTML
+- CSS
+
+## Para iniciar
+
+Clona el repositorio:
 
 ```sh
-npm create astro@latest -- --template basics
+git clone https://github.com/pablocazorla/lapurga.git
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+Instala dependencias:
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+```sh
+npm install
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Corre el repositorio localmente:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+npm run dev
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+Abre un navegador y ve a [http://localhost:4321/](http://localhost:4321/).
 
-## 🧞 Commands
+## Variables de entorno
 
-All commands are run from the root of the project, from a terminal:
+Para correr el proyecto, debes crear un archivo `.env` en la raíz del proyecto con las siguientes variables de entorno:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- PUBLIC_CLOUDINARY_CLOUD_NAME
+- PUBLIC_CLOUDINARY_API_KEY
+- CLOUDINARY_API_SECRET
 
-## 👀 Want to learn more?
+Puedes mirar el archivo `.env.example` como ejemplo.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Tales variables se pueden obtener en la sección "API Keys" de tu cuenta de Cloudinary.
+
+## Crédito de la música utilizada
+
+La música de piano de fondo utilizada en la aplicación tiene el siguiente crédito:
+
+Blue Feather - Reunited de Kevin MacLeod cuenta con una licencia Creative Commons Atribución 4.0. https://creativecommons.org/licenses/by/4.0/
+
+Fuente: http://incompetech.com/music/royalty-free/index.html?isrc=USUAN1200068
+
+Artista: http://incompetech.com/
+
+## Licencia
+
+Licencia Creative Commons Atribución 4.0. https://creativecommons.org/licenses/by/4.0/
+
+## Contacto
+
+Por cualquier duda o sugerencia, no dudes en escribirme a mi correo: [pablo.david.cazorla@gmail.com](mailto:pablo.david.cazorla@gmail.com).

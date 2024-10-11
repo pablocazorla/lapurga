@@ -1,91 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Photo from "../components/photo.astro";
 import Textbox from "../components/textbox.astro";
 import DimmerFullScreen from "../components/dimme-fullscreen.astro";
-import Photo from "../components/photo.astro";
-import { CldUploadWidget } from "astro-cloudinary";
+import Foreground from "../components/foreground.astro";
+import Card from "../components/card.astro";
 ---
 
-<Layout title="La Purga">
+<Layout title="La Purga de Halloween">
   <main class="main">
-    <div class="video-bg-noise">
-      <video src="/img/bg-video.mp4" muted autoplay loop></video>
-    </div>
     <Photo />
     <Textbox />
-    <div class="dimmer-noise"></div>
     <DimmerFullScreen />
+    <Foreground />
+    <Card />
   </main>
 </Layout>
 <style>
   .main {
     overflow: hidden;
-  }
-  .video-bg-noise {
-    position: fixed;
-    z-index: 1998;
-    top: 0;
-    left: 0;
-    width: 100dvw;
-    height: 100dvh;
-    mix-blend-mode: screen;
-    opacity: 0.05;
-    pointer-events: none;
-  }
-  .video-bg-noise video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .dimmer-noise {
-    position: fixed;
-    z-index: 2000;
-    top: 0;
-    left: 0;
-    width: 100dvw;
-    height: 100dvh;
-    pointer-events: none;
-    background-image: url("/img/noise.svg");
-    animation: noiseAnimation 0.2s step-end infinite;
-    mix-blend-mode: screen;
-    opacity: 0.1;
-  }
-
-  @keyframes noiseAnimation {
-    0% {
-      background-position: 0 0;
-    }
-    10% {
-      background-position: -730px 590px;
-    }
-    20% {
-      background-position: -200px -200px;
-    }
-    30% {
-      background-position: 150px 356px;
-    }
-    40% {
-      background-position: 310px -440px;
-    }
-    60% {
-      background-position: 10px 930px;
-    }
-    60% {
-      background-position: -630px 520px;
-    }
-    70% {
-      background-position: -240px -280px;
-    }
-    80% {
-      background-position: 178px 256px;
-    }
-    90% {
-      background-position: -710px -40px;
-    }
-    100% {
-      background-position: 0 0;
-    }
   }
 </style>
 

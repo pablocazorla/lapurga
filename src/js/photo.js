@@ -8,12 +8,14 @@ class Photo {
     this.dimmer = document.querySelector(`#${idNode}-dimmer`);
     this.photoWrap = document.querySelector(`#${idNode} .photo-wrap`);
     this.photoOriginal = document.querySelector(`#${idNode} .photo-original`);
+    this.photoOriginalUrl = "";
     this.photoDead = document.querySelector(`#${idNode} .photo-dead`);
+    this.photoDeadUrl = "";
     this.imagesLoaded = 0;
     this.isReadyMessage = false;
   }
   load(publicId) {
-    const urlOriginal = getCldImageUrl({
+    this.photoOriginalUrl = getCldImageUrl({
       src: publicId,
       crop: {
         width: 600,
@@ -23,7 +25,7 @@ class Photo {
       },
     });
 
-    const urlDead = getCldImageUrl({
+    this.photoDeadUrl = getCldImageUrl({
       src: publicId,
       crop: {
         width: 600,
@@ -37,9 +39,6 @@ class Photo {
       ],
     });
 
-    /*     const urlDead =
-      "https://res.cloudinary.com/cazu/image/upload/e_gen_replace:from_face;to_dead%20zombie%20face%20with%20closed%20eyes;preserve-geometry_true/c_thumb,w_600,h_600,g_auto/f_auto/q_auto/v1/halloween/hj1hs2982s7ga5bqpces?_a=BBGABlXg0"; */
-
     this.photoOriginal.addEventListener("load", () => {
       this.imagesLoaded++;
     });
@@ -47,7 +46,7 @@ class Photo {
       console.log("Error photo original");
       this.imagesLoaded++;
     });
-    this.photoOriginal.src = urlOriginal;
+    this.photoOriginal.src = this.photoOriginalUrl;
     //
     this.photoDead.addEventListener("load", () => {
       this.imagesLoaded++;
@@ -56,7 +55,7 @@ class Photo {
       console.log("Error photo dead");
       this.imagesLoaded++;
     });
-    this.photoDead.src = urlDead;
+    this.photoDead.src = this.photoDeadUrl;
 
     return this;
   }
@@ -70,7 +69,7 @@ class Photo {
     return this;
   }
 
-  readyMessage() {
+  setReadyMessage() {
     this.isReadyMessage = true;
     return this;
   }

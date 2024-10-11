@@ -1,52 +1,46 @@
-import TextBox from "./textBox";
+import FullscreenControl from "./fullscreen-control";
 import Photo from "./photo";
+import TextBox from "./textBox";
+import Uploader from "./uploader";
+import MusicControl from "./music-control";
+import Card from "./card";
+import { getEndText } from "./textUtils";
 
 window.addEventListener("load", function () {
-  let step = 0;
-  let isFullScreen = false;
-  let photoId = "halloween/gquukcgkzyzhsuicggca";
-  const dimmerFullScreen = document.getElementById("dimmer-full-screen");
-  const widget = document.querySelector("#upload-widget");
   //
-  const bgMusic = new Audio("/audio/bg-music.mp3");
-  bgMusic.volume = 0.4;
-  const showMusic = new Audio("/audio/show.mp3");
-  showMusic.volume = 0.8;
-  //
+  const fullscreenControl = new FullscreenControl("dimmer-full-screen");
   const textBox = new TextBox("textbox");
   const textBoxBtn = new TextBox("textbox-btn");
   const photo = new Photo("photo-container");
+  const uploader = new Uploader("upload-widget");
+  const musicControl = new MusicControl();
+  const card = new Card("card-container");
   //
 
-  const setStep = (val) => {
-    step = val;
-
+  const setStep = (step) => {
     // STEP 0
     if (step === 0) {
       // FULLSCREEN
-
-      window.addEventListener("fullscreenchange", () => {
-        if (document.fullscreenElement) {
-          isFullScreen = true;
-          dimmerFullScreen.style.display = "none";
-          setTimeout(() => {
-            textBox.fadeOut(() => {
-              setStep(1);
-            });
-          }, 600);
-        } else {
-          isFullScreen = false;
+      fullscreenControl.isFullScreenTest(
+        () => {
+          fullscreenControl.hide();
+          setStep(1);
+        },
+        () => {
+          textBox.fill("Acércate").wait();
+          fullscreenControl.onClick(() => {
+            musicControl.playBgMusic();
+            setTimeout(() => {
+              textBox.fadeOut(() => {
+                setStep(1);
+              });
+            }, 600);
+          });
         }
-      });
-      dimmerFullScreen.addEventListener("click", function () {
-        if (!isFullScreen) {
-          document.documentElement.requestFullscreen();
-        }
-        bgMusic.play();
-      });
-      textBox.fill("Acércate").wait();
+      );
     }
 
+    // STEP 1
     if (step === 1) {
       textBox.write(
         "Para participar en la Purga,|sube una *foto con tu rostro+.",
@@ -55,9 +49,7 @@ window.addEventListener("load", function () {
         }
       );
 
-      widget.addEventListener("clduploadwidget:success", (e) => {
-        photoId = e?.detail?.info?.public_id || "";
-
+      uploader.onUpload(() => {
         textBoxBtn.fadeOut(() => {
           textBoxBtn.hide();
         });
@@ -66,47 +58,50 @@ window.addEventListener("load", function () {
         });
       });
     }
+
+    // STEP 2
     if (step === 2) {
       textBox.write(
         "*Un momento+:||Estamos averiguando|quién eres y dónde vives|",
         () => {
           textBox.wait();
           setTimeout(() => {
-            photo.readyMessage();
+            photo.setReadyMessage();
           }, 1000);
         }
       );
-      // Cargamos la imagen
-      photo.load(photoId).onLoad(() => {
+      photo.load(uploader.photoId).onLoad(() => {
         setStep(3);
       });
     }
+
+    // STEP 3
     if (step === 3) {
       textBox.clear();
       photo.show();
-      bgMusic.pause();
-      showMusic.play();
+      musicControl.playShowPhotoMusic();
       setTimeout(() => {
         setStep(4);
       }, 7000);
     }
+
+    // STEP 4
     if (step === 4) {
-      const nowDate = new Date();
-      const halloweenDate = new Date("Nov 01, 2024 00:00:00");
-      const msUntilHalloween = halloweenDate.getTime() - nowDate.getTime();
-
-      const daysUntilHalloween = Math.floor(
-        msUntilHalloween / (1000 * 60 * 60 * 24)
-      );
-
-      const days = Math.max(daysUntilHalloween, 1);
-
-      const countStr = `${
-        days === 1 ? "del día" : "los " + days + " días"
-      } de vida que te quedan`;
+      const endText = getEndText();
       textBox.write(
-        `*Solicitud recibida+:||Te purgaremos de este mundo|el día 31 de Octubre de 2024 a las 11:59 pm.||Disfruta ${countStr}.`
+        `*Solicitud recibida+:||Te purgaremos de este mundo|el día 31 de Octubre de 2024 a las 11:59 pm.||${endText}.`,
+        () => {
+          card.showButton().draw(photo);
+        }
       );
+    }
+
+    // STEP 5
+    if (step === -1) {
+      const endText = getEndText();
+      textBox.write(`A`, () => {
+        card.showButton().draw(photo);
+      });
     }
   };
 

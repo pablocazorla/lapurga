@@ -1,0 +1,121 @@
+---
+import IconDownload from "./icon-download.astro";
+import IconClose from "./icon-close.astro";
+---
+
+<section class="card-container" id="card-container">
+  <div class="card-wrap">
+    <div class="card-box">
+      <div class="card">
+        <canvas
+          class="card-canvas"
+          width="700"
+          height="280"
+          title="Certificado de purga"></canvas>
+      </div>
+      <nav class="card-btn-container">
+        <button
+          class="card-btn"
+          title="Descargar certificado"
+          aria-label="Descargar certificado"
+        >
+          <IconDownload />
+          Descargar
+        </button>
+        <button class="card-btn-close" title="Cerrar" aria-label="Cerrar">
+          <IconClose />
+        </button>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<style>
+  .card-container {
+    position: fixed;
+    z-index: 3000;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    display: grid;
+    place-content: center;
+    visibility: hidden;
+    background-color: #0e0814ed;
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+  }
+
+  .card-wrap {
+    width: 100dvw;
+    padding: 10px;
+    transition: transform 0.25s ease-in-out;
+    transform: scale(0.7, 0);
+  }
+
+  .card-container.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  .card-container.show .card-wrap {
+    transform: scale(1, 1);
+  }
+
+  .card-box {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .card {
+    background-color: #1e003a;
+    box-shadow: 0 5px 70px rgba(0, 0, 0, 0.5);
+  }
+  .card-canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .card-btn-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .card-btn {
+    background-color: #00000093;
+    border: none;
+    outline: none;
+    color: #00d660;
+    text-shadow: 0px 1px 4px #00ff737e;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 8px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+      background-color: #0000005d;
+    }
+  }
+  .card-btn-close {
+    position: absolute;
+    top: -11px;
+    right: -11px;
+    background-color: #00000093;
+    border: 1px solid #00d66044;
+    outline: none;
+    color: #00d660;
+    width: 22px;
+    height: 22px;
+    line-height: 1;
+    border-radius: 50%;
+    padding: 2px 0 0;
+    cursor: pointer;
+  }
+</style>

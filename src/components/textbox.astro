@@ -2,13 +2,13 @@
 import { CldUploadWidget } from "astro-cloudinary";
 ---
 
-<div class="textbox-container">
+<section class="textbox-container">
   <div class="textbox-wrap">
-    <div class="textbox" id="textbox">
+    <p class="textbox" id="textbox">
       <span class="textbox-inner"></span><span class="textbox-wait"
         >&nbsp;&nbsp;&nbsp;</span
       >
-    </div>
+    </p>
     <CldUploadWidget
       id="upload-widget"
       uploadPreset="upload-images"
@@ -47,12 +47,26 @@ import { CldUploadWidget } from "astro-cloudinary";
         },
       }}
     >
-      <button class="textbox textbox-btn" id="textbox-btn">
+      <button
+        class="textbox textbox-btn"
+        id="textbox-btn"
+        title="Cargar foto"
+        aria-label="Cargar foto"
+      >
         <span class="textbox-inner"></span><span class="textbox-wait"></span>
       </button>
     </CldUploadWidget>
+    <button
+      class="textbox textbox-btn"
+      id="textbox-btn-download"
+      title="Abrir certificado de purga"
+      aria-label="Abrir certificado de purga"
+    >
+      <span class="textbox-inner">Certificado de purga</span>
+    </button>
   </div>
-</div>
+</section>
+
 <style>
   .textbox-container {
     position: fixed;
@@ -83,9 +97,28 @@ import { CldUploadWidget } from "astro-cloudinary";
     border-radius: 12px;
     cursor: pointer;
     display: none;
+
+    &:hover {
+      background-color: #0000005d;
+    }
+  }
+  #textbox-btn-download {
+    font-size: 16px;
+  }
+  #textbox-btn-download.show {
+    display: inline-block;
+    animation: fadeIn 0.4s ease-in-out;
   }
   .fade-out {
     animation: fadeOut 1s ease-in-out;
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
   @keyframes fadeOut {
     0% {

@@ -1,0 +1,31 @@
+{
+  "list": [
+    {
+      "url": "https://eramajarvi-project-spellbound.vercel.app/",
+      "img": "eramajarvi"
+    },
+    { "url": "https://hauntedfolio.vercel.app/", "img": "hauntedfolio" },
+    { "url": "https://ghost-spotters.vercel.app/", "img": "ghost spotters" },
+    {
+      "url": "https://spooky-customize-ai.vercel.app/",
+      "img": "customize"
+    },
+    { "url": "https://vhs-story.vercel.app/", "img": "vhs story" },
+    { "url": "https://spectral-vision.vercel.app/", "img": "spectral" },
+    { "url": "https://ghouglify.art/", "img": "ghouglify" },
+    { "url": "https://showmeyourstyle.vercel.app/", "img": "showmeyourstyle" },
+    { "url": "https://spooklens.vercel.app/", "img": "spooklens" },
+    { "url": "https://spooky-hack.jesusnoseq.com/", "img": "spooky hack" },
+    {
+      "url": "https://hackathon-cloudinary.onrender.com/",
+      "img": "hackathon"
+    },
+    {
+      "url": "https://culinary-spells-frontend.netlify.app/",
+      "img": "culinary"
+    },
+    { "url": "https://ailloween.netlify.app/", "img": "ailloween" },
+    { "url": "https://scary-stories.vercel.app/", "img": "scary stories" },
+    { "url": "https://spookify.davidpoza.com/", "img": "spookify" }
+  ]
+}

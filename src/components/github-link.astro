@@ -11,13 +11,18 @@ import IconGithub from "./icon-github.astro";
 >
   <IconGithub />
 </a>
+<div class="prize">
+  <div class="prize-content">
+    1º Premio Cloudinary CloudCreate: Spooky AI Hackathon
+  </div>
+</div>
 
 <style>
   .github-link {
     position: fixed;
     z-index: 9999;
-    top: 0;
-    right: 0;
+    top: 6px;
+    right: 6px;
     display: block;
     width: 40px;
     height: 40px;
@@ -30,5 +35,30 @@ import IconGithub from "./icon-github.astro";
     &:hover {
       opacity: 1;
     }
+  }
+
+  .prize {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    right: 0;
+    background-color: #00d660;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 420px;
+    height: 50px;
+    transform: translateY(41px) translateX(145px) rotate(45deg);
+    opacity: 0.8;
+  }
+  .prize-content {
+    font-family: Montserrat, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #1e003a;
+    box-shadow: none;
+    font-size: 12px;
+    text-align: center;
+    text-wrap: balance;
+    width: 200px;
+    font-style: italic;
   }
 </style>

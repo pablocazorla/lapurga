@@ -1,6 +1,6 @@
 export const getEndText = () => {
   const nowDate = new Date();
-  const halloweenDate = new Date("Nov 01, 2024 00:00:00");
+  const halloweenDate = new Date("Nov 01, 2025 00:00:00");
   const msUntilHalloween = halloweenDate.getTime() - nowDate.getTime();
 
   const daysUntilHalloween = Math.floor(

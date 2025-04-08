@@ -136,7 +136,7 @@ class Card {
       this.ctx.fillText("Te purgaremos de este mundo", textX, textY);
 
       textY += text_height;
-      this.ctx.fillText("el día 31 de Octubre de 2024", textX, textY);
+      this.ctx.fillText("el día 31 de Octubre de 2025", textX, textY);
 
       textY += text_height;
       this.ctx.fillText("a las 11:59 pm.", textX, textY);
